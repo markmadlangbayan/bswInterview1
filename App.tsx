@@ -6,26 +6,24 @@ type Memo2Props = {
 }
 
 const GreetingLabel = ({getName}: Memo2Props) => {
-  console.log('Memo2 got rendered!');
+  console.log('GreetingLabel got rendered!');
   return <Text>Hi {getName()}</Text>;
 };
-
-const name = () => 'Baylor';
 
 export default function App() {
   const [num1, setNum1] = useState(0);
 
-  const Memo1 = memo(() => {
-    console.log('Memo1 got rendered!');
-    return <Text>Memo1</Text>;
+  const MemoLabel = memo(() => {
+    console.log('MemoLabel got rendered!');
+    return <Text>Memo</Text>;
   });
 
   return (
     <View style={s.container}>
       <Button title="Tap" onPress={() => setNum1(num1 + 1)}/>
-      <Memo1 />
+      <GreetingLabel getName={() => 'Baylor'} />
 
-      <GreetingLabel getName={name} />
+      <MemoLabel />
     </View>
   );
 }
@@ -36,10 +34,5 @@ const s = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  memo1: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around'
   }
 });
