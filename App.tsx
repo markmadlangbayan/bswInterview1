@@ -5,35 +5,32 @@ type Memo2Props = {
   getName: () => string
 }
 
-const Memo2 = (props: Memo2Props) => {
-
+const GreetingLabel = ({getName}: Memo2Props) => {
   console.log('Memo2 got rendered!');
-  return <Text>Hi {props.getName()}</Text>;
-
+  return <Text>Hi {getName()}</Text>;
 };
 
-const Memo1 = memo(() => {
-  console.log('Memo1 got rendered!');
-  return <Text>Memo1</Text>;
-});
-
+const name = () => 'Baylor';
 
 export default function App() {
   const [num1, setNum1] = useState(0);
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.memo1}>
-        <Button title="Tap" onPress={() => setNum1(num1 + 1)}/>
-        <Memo1 />
-      </View>
+  const Memo1 = memo(() => {
+    console.log('Memo1 got rendered!');
+    return <Text>Memo1</Text>;
+  });
 
-      <Memo2 getName={() => 'Baylor'} />
+  return (
+    <View style={s.container}>
+      <Button title="Tap" onPress={() => setNum1(num1 + 1)}/>
+      <Memo1 />
+
+      <GreetingLabel getName={name} />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
